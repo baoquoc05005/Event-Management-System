@@ -2,8 +2,8 @@
 {
     public class Role
     {
-        public string RoleId { get; set; } = Guid.NewGuid().ToString();
-        public string Name { get; set; }
-        public string Description { get; set; }
+        public int RoleId { get; set; }
+        public string RoleName { get; set; }
+        public List<User> Users { get; set; }
     }
 }

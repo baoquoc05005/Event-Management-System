@@ -1,0 +1,13 @@
+﻿@{
+    ViewData["Title"] = "Register";
+}
+
+
+<form method="post">
+    <input name="username" placeholder="Username" />
+    <input name="email" placeholder="Email" />
+    <input name="password" type="password" placeholder="Password" />
+    <button type="submit">Register</button>
+</form>
+
+<p>@ViewBag.Error</p>

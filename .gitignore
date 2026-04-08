@@ -2,3 +2,5 @@ obj
 wwwroot
 properties
 .vs
+bin
+migrations
