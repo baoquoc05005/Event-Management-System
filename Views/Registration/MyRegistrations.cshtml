@@ -1,0 +1,81 @@
+@model IEnumerable<EventManagementSystem.Models.Registration>
+
+@{
+    ViewData["Title"] = "My Registrations";
+}
+
+<h2>My Event Registrations</h2>
+<hr />
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">@TempData["Success"]</div>
+}
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">
+        You haven't registered for any events yet.
+        <a asp-controller="Event" asp-action="Index">Browse Events</a>
+    </div>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Event</th>
+                <th>Location</th>
+                <th>Date</th>
+                <th>Registration Date</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var registration in Model)
+            {
+                <tr>
+                    <td>
+                        <a asp-controller="Event" asp-action="Details" asp-route-id="@registration.EventId">
+                            @registration.Event.Title
+                        </a>
+                    </td>
+                    <td>@registration.Event.Location</td>
+                    <td>@registration.Event.EventDate.ToString("MMM dd, yyyy")</td>
+                    <td>@registration.RegistrationDate.ToString("MMM dd, yyyy")</td>
+                    <td>
+                        @if (registration.Status == RegistrationStatus.Confirmed)
+                        {
+                            <span class="badge bg-success">Confirmed</span>
+                        }
+                        else if (registration.Status == RegistrationStatus.Waitlisted)
+                        {
+                            <span class="badge bg-warning">Waitlisted</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-secondary">Cancelled</span>
+                        }
+                    </td>
+                    <td>
+                        @if (registration.Status != RegistrationStatus.Cancelled)
+                        {
+                            <form asp-action="Cancel" asp-route-id="@registration.RegistrationId" method="post" style="display:inline;">
+                                <button type="submit" class="btn btn-sm btn-danger" 
+                                        onclick="return confirm('Are you sure you want to cancel this registration?')">
+                                    Cancel Registration
+                                </button>
+                            </form>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
