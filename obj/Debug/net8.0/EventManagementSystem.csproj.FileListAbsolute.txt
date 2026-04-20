@@ -1,0 +1,10 @@
+C:\Users\Daniel\Documents\ASPCode\Final Project VS\EventManagementSystem\EventManagementSystem\obj\Debug\net8.0\EventManagementSystem.csproj.AssemblyReference.cache
+C:\Users\Daniel\Documents\ASPCode\Final Project VS\EventManagementSystem\EventManagementSystem\obj\Debug\net8.0\rpswa.dswa.cache.json
+C:\Users\Daniel\Documents\ASPCode\Final Project VS\EventManagementSystem\EventManagementSystem\obj\Debug\net8.0\EventManagementSystem.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Daniel\Documents\ASPCode\Final Project VS\EventManagementSystem\EventManagementSystem\obj\Debug\net8.0\EventManagementSystem.AssemblyInfoInputs.cache
+C:\Users\Daniel\Documents\ASPCode\Final Project VS\EventManagementSystem\EventManagementSystem\obj\Debug\net8.0\EventManagementSystem.AssemblyInfo.cs
+C:\Users\Daniel\Documents\ASPCode\Final Project VS\EventManagementSystem\EventManagementSystem\obj\Debug\net8.0\EventManagementSystem.csproj.CoreCompileInputs.cache
+C:\Users\Daniel\Documents\ASPCode\Final Project VS\EventManagementSystem\EventManagementSystem\obj\Debug\net8.0\EventManagementSystem.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Daniel\Documents\ASPCode\Final Project VS\EventManagementSystem\EventManagementSystem\obj\Debug\net8.0\EventManagementSystem.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Daniel\Documents\ASPCode\Final Project VS\EventManagementSystem\EventManagementSystem\obj\Debug\net8.0\EventManagementSystem.RazorAssemblyInfo.cache
+C:\Users\Daniel\Documents\ASPCode\Final Project VS\EventManagementSystem\EventManagementSystem\obj\Debug\net8.0\EventManagementSystem.RazorAssemblyInfo.cs

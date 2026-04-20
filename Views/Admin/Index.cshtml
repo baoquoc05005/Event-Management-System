@@ -1,0 +1,81 @@
+﻿@model EventManagementSystem.Models.ViewModels.AdminDashboardViewModel
+
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<div class="container mt-4">
+
+    <h2 class="mb-4">Admin Dashboard</h2>
+
+    <!-- STATS CARDS -->
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card text-white bg-primary mb-3">
+                <div class="card-body">
+                    <h5>Total Users</h5>
+                    <h3>@Model.TotalUsers</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card text-white bg-success mb-3">
+                <div class="card-body">
+                    <h5>Total Events</h5>
+                    <h3>@Model.TotalEvents</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card text-white bg-warning mb-3">
+                <div class="card-body">
+                    <h5>Registrations</h5>
+                    <h3>@Model.TotalRegistrations</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- RECENT USERS -->
+    <h4 class="mt-4">Recent Users</h4>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model.RecentUsers)
+            {
+                <tr>
+                    <td>@user.Username</td>
+                    <td>@user.Email</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <!-- RECENT EVENTS -->
+    <h4 class="mt-4">Recent Events</h4>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Location</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var ev in Model.RecentEvents)
+            {
+                <tr>
+                    <td>@ev.Title</td>
+                    <td>@ev.Location</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
