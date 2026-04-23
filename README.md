@@ -1,27 +1,6 @@
 # Event Management System
-## C#.NET MVC + Microservices Web Application
 
-A comprehensive event management system built with ASP.NET Core MVC, microservices architecture, Entity Framework Core, and role-based authentication.
-
----
-
-## 🎯 Project Overview
-
-This application allows users to browse and register for events, while administrators can manage events, categories, and view registrations. The system demonstrates a complete microservices architecture with MVC frontend communicating with backend APIs.
-
-### Key Features
-- ✅ **User Authentication & Authorization** (Login, Register, Role-based access)
-- ✅ **Event Management** (Full CRUD operations)
-- ✅ **Registration System** (Users can register for events)
-- ✅ **Category Management** (Admin only)
-- ✅ **Microservices Architecture** (API Gateway + 3 Microservices)
-- ✅ **Entity Framework Core** (SQLite database with migrations)
-- ✅ **Responsive UI** (Bootstrap 5)
-- ✅ **Dashboard** (Statistics and featured events)
-
----
-
-## 🏗️ Architecture
+##  Architecture
 
 ### System Flow
 ```
@@ -48,8 +27,7 @@ Database → Microservices → API Gateway → MVC App → User
 
 ---
 
-## 📊 Database Schema
-
+## Database Schema
 ### Tables
 1. **AspNetUsers** (Identity)
    - Id, Email, FirstName, LastName, CreatedAt
@@ -68,12 +46,6 @@ Database → Microservices → API Gateway → MVC App → User
 ---
 
 ## 🚀 Setup Instructions
-
-### Prerequisites
-- .NET 10.0 SDK
-- Visual Studio 2022 or VS Code
-- Git
-
 ### Installation Steps
 
 1. **Clone Repository**
@@ -256,86 +228,4 @@ EventManagementSystemFinal/
 - `POST /api/gateway/registrations` - Create registration
 - `DELETE /api/gateway/registrations/{id}` - Delete registration
 
----
 
-## 🎓 Evaluation Criteria Met
-
-| Requirement | Status | Implementation |
-|------------|--------|----------------|
-| Microservice | ✅ | 3 services + API Gateway |
-| Authentication | ✅ | ASP.NET Identity with roles |
-| CRUD Operations | ✅ | Events, Registrations, Categories |
-| Entity Framework | ✅ | EF Core with migrations |
-| MVC Architecture | ✅ | Complete MVC structure |
-| Database Design | ✅ | 4 tables with relationships |
-| UI/UX | ✅ | Bootstrap responsive design |
-| Documentation | ✅ | This README |
-
----
-
-## 📸 Screenshots
-
-### Home Page
-![Home Page](screenshots/home.png)
-
-### Event Listing
-![Events](screenshots/events.png)
-
-### Event Details
-![Event Details](screenshots/event-details.png)
-
-### Registration
-![Registration](screenshots/registration.png)
-
-### Admin Dashboard
-![Admin](screenshots/admin.png)
-
----
-
-## 🚀 Deployment
-
-### Deployment URL
-- **Live Application:** [To be deployed]
-- **API Gateway:** [To be deployed]
-
-### Deployment Platforms
-- Azure App Service
-- AWS Elastic Beanstalk
-- Render
-- Railway
-
----
-
-## 👨‍💻 Developer
-
-**Your Name**
-- GitHub: [@yourusername](https://github.com/yourusername)
-- Email: your.email@example.com
-
----
-
-## 📝 License
-
-This project is developed as part of a final project submission for [Course Name].
-
----
-
-## 🙏 Acknowledgments
-
-- ASP.NET Core Documentation
-- Bootstrap Framework
-- Entity Framework Core
-- Microsoft Identity
-
----
-
-## 📞 Support
-
-For issues or questions:
-1. Check existing documentation
-2. Review code comments
-3. Contact: your.email@example.com
-
----
-
-**Last Updated:** April 2026
