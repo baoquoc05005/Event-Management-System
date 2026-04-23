@@ -1,0 +1,57 @@
+@model IEnumerable<EventManagementSystemFinal.Models.Registration>
+@{
+    ViewData["Title"] = "My Registrations";
+}
+
+<div class="container">
+    <h2 class="mb-4">My Registrations</h2>
+    
+    @if (Model.Any())
+    {
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-6 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.Event.Title</h5>
+                            <p class="card-text">
+                                <i class="bi bi-calendar"></i> @item.Event.EventDate.ToString("MMM dd, yyyy")<br>
+                                <i class="bi bi-geo-alt"></i> @item.Event.Location<br>
+                                <i class="bi bi-clock"></i> Registered: @item.RegistrationDate.ToString("MMM dd, yyyy")<br>
+                                Status: 
+                                @if (item.Status == EventManagementSystemFinal.Models.RegistrationStatus.Confirmed)
+                                {
+                                    <span class="badge bg-success">Confirmed</span>
+                                }
+                                else if (item.Status == EventManagementSystemFinal.Models.RegistrationStatus.Waitlisted)
+                                {
+                                    <span class="badge bg-warning">Waitlisted</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-danger">Cancelled</span>
+                                }
+                            </p>
+                            @if (!string.IsNullOrEmpty(item.Notes))
+                            {
+                                <p class="card-text"><strong>Notes:</strong> @item.Notes</p>
+                            }
+                            <div class="d-flex gap-2">
+                                <a asp-controller="Events" asp-action="Details" asp-route-id="@item.EventId" class="btn btn-sm btn-primary">View Event</a>
+                                <a asp-action="Delete" asp-route-id="@item.RegistrationId" class="btn btn-sm btn-danger">Cancel Registration</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info">
+            <i class="bi bi-info-circle"></i> You haven't registered for any events yet.
+            <a asp-controller="Events" asp-action="Index" class="alert-link">Browse available events</a>
+        </div>
+    }
+</div>

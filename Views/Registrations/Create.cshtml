@@ -1,0 +1,41 @@
+@model EventManagementSystemFinal.Models.Registration
+@{
+    ViewData["Title"] = "Register for Event";
+    var eventItem = ViewBag.Event as EventManagementSystemFinal.Models.Event;
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Register for Event</h3>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-info">
+                        <h5>@Model.Event?.Title</h5>
+                        <p>
+                            <i class="bi bi-calendar"></i> @Model.Event?.EventDate.ToString("MMMM dd, yyyy")<br>
+                            <i class="bi bi-geo-alt"></i> @Model.Event?.Location
+                        </p>
+                    </div>
+                    
+                    <form asp-action="Create" method="post">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="EventId" value="@Model.EventId" />
+                        
+                        <div class="form-group mb-3">
+                            <label for="Notes" class="form-label">Notes (Optional)</label>
+                            <textarea name="Notes" class="form-control" rows="3" placeholder="Any special requirements or notes..."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success">Confirm Registration</button>
+                            <a asp-controller="Events" asp-action="Details" asp-route-id="@Model.EventId" class="btn btn-secondary">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

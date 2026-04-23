@@ -1,0 +1,47 @@
+@model IEnumerable<EventManagementSystemFinal.Models.Event>
+@{
+    ViewData["Title"] = "Events";
+}
+
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>All Events</h2>
+        @if (User.IsInRole("Admin"))
+        {
+            <a asp-action="Create" class="btn btn-primary">Create New Event</a>
+        }
+    </div>
+
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Title</h5>
+                        <p class="card-text">@item.Description</p>
+                        <p class="card-text">
+                            <small class="text-muted">
+                                <i class="bi bi-calendar"></i> @item.EventDate.ToString("MMM dd, yyyy")<br>
+                                <i class="bi bi-geo-alt"></i> @item.Location<br>
+                                <i class="bi bi-people"></i> @item.Registrations.Count / @item.Capacity registered<br>
+                                @if (item.Category != null)
+                                {
+                                    <i class="bi bi-tag"></i> @item.Category.Name
+                                }
+                            </small>
+                        </p>
+                        <div class="d-flex gap-2">
+                            <a asp-action="Details" asp-route-id="@item.EventId" class="btn btn-sm btn-primary">Details</a>
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <a asp-action="Edit" asp-route-id="@item.EventId" class="btn btn-sm btn-warning">Edit</a>
+                                <a asp-action="Delete" asp-route-id="@item.EventId" class="btn btn-sm btn-danger">Delete</a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

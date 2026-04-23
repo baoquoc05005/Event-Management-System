@@ -1,0 +1,131 @@
+@model EventManagementSystemFinal.Models.Event
+@{
+    ViewData["Title"] = "Event Details";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h3>@Model.Title</h3>
+                </div>
+                <div class="card-body">
+                    <p class="lead">@Model.Description</p>
+                    
+                    <hr>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p><strong><i class="bi bi-calendar"></i> Date:</strong><br>@Model.EventDate.ToString("MMMM dd, yyyy")</p>
+                            <p><strong><i class="bi bi-clock"></i> Time:</strong><br>@Model.EventDate.ToString("hh:mm tt")</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p><strong><i class="bi bi-geo-alt"></i> Location:</strong><br>@Model.Location</p>
+                            <p><strong><i class="bi bi-people"></i> Capacity:</strong><br>@Model.Registrations.Count / @Model.Capacity registered</p>
+                        </div>
+                    </div>
+                    
+                    @if (Model.Category != null)
+                    {
+                        <p><strong><i class="bi bi-tag"></i> Category:</strong> @Model.Category.Name</p>
+                    }
+                    
+                    <hr>
+                    
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        var userId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+                        var isRegistered = Model.Registrations.Any(r => r.UserId == userId && r.Status == EventManagementSystemFinal.Models.RegistrationStatus.Confirmed);
+                        
+                        @if (isRegistered)
+                        {
+                            <div class="alert alert-success">
+                                <i class="bi bi-check-circle"></i> You are registered for this event!
+                            </div>
+                        }
+                        else if (Model.Registrations.Count >= Model.Capacity)
+                        {
+                            <div class="alert alert-warning">
+                                <i class="bi bi-exclamation-triangle"></i> This event is full.
+                            </div>
+                        }
+                        else
+                        {
+                            <a asp-controller="Registrations" asp-action="Create" asp-route-eventId="@Model.EventId" class="btn btn-success btn-lg">
+                                <i class="bi bi-calendar-check"></i> Register for this Event
+                            </a>
+                        }
+                    }
+                    else
+                    {
+                        <div class="alert alert-info">
+                            Please <a asp-controller="Account" asp-action="Login">login</a> to register for this event.
+                        </div>
+                    }
+                </div>
+            </div>
+            
+            @if (User.IsInRole("Admin") && Model.Registrations.Any())
+            {
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <h5>Registered Participants (@Model.Registrations.Count)</h5>
+                    </div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Registration Date</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var registration in Model.Registrations)
+                                {
+                                    <tr>
+                                        <td>@registration.User.FirstName @registration.User.LastName</td>
+                                        <td>@registration.User.Email</td>
+                                        <td>@registration.RegistrationDate.ToString("MMM dd, yyyy")</td>
+                                        <td>
+                                            @if (registration.Status == EventManagementSystemFinal.Models.RegistrationStatus.Confirmed)
+                                            {
+                                                <span class="badge bg-success">Confirmed</span>
+                                            }
+                                            else if (registration.Status == EventManagementSystemFinal.Models.RegistrationStatus.Waitlisted)
+                                            {
+                                                <span class="badge bg-warning">Waitlisted</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge bg-danger">Cancelled</span>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            }
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Actions</h5>
+                </div>
+                <div class="card-body">
+                    <a asp-action="Index" class="btn btn-secondary w-100 mb-2">Back to Events</a>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a asp-action="Edit" asp-route-id="@Model.EventId" class="btn btn-warning w-100 mb-2">Edit Event</a>
+                        <a asp-action="Delete" asp-route-id="@Model.EventId" class="btn btn-danger w-100">Delete Event</a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

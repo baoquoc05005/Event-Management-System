@@ -1,0 +1,132 @@
+﻿@model EventManagementSystemFinal.Models.DashboardViewModel
+@{
+    ViewData["Title"] = "Event Management System";
+}
+
+<div class="hero-section">
+    <div class="container text-center">
+        <h1 class="display-4">Event Management System</h1>
+        <p class="lead">Discover, Register, and Manage Amazing Events</p>
+        @if (!User.Identity.IsAuthenticated)
+        {
+            <div class="mt-4">
+                <a href="@Url.Action("Login", "Account")" class="btn btn-primary btn-lg me-3">Login</a>
+                <a href="@Url.Action("Register", "Account")" class="btn btn-outline-primary btn-lg">Register</a>
+            </div>
+        }
+    </div>
+</div>
+
+@if (User.Identity.IsAuthenticated)
+{
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">@Model.TotalEvents</h5>
+                    <p class="card-text">Total Events</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">@Model.UpcomingEvents</h5>
+                    <p class="card-text">Upcoming Events</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">@Model.TotalRegistrations</h5>
+                    <p class="card-text">Total Registrations</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Active</h5>
+                    <p class="card-text">System Status</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+}
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Featured Events</h2>
+    
+    @if (Model.FeaturedEvents.Any())
+    {
+        <div class="row">
+            @foreach (var eventItem in Model.FeaturedEvents)
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">@eventItem.Title</h5>
+                            <p class="card-text">@eventItem.Description</p>
+                            <p class="card-text">
+                                <small class="text-muted">
+                                    <i class="bi bi-calendar"></i> @eventItem.EventDate.ToString("MMM dd, yyyy")<br>
+                                    <i class="bi bi-geo-alt"></i> @eventItem.Location<br>
+                                    <i class="bi bi-people"></i> @eventItem.Registrations.Count / @eventItem.Capacity registered
+                                </small>
+                            </p>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <a href="@Url.Action("Details", "Events", new { id = eventItem.EventId })" class="btn btn-primary">View Details</a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("Login", "Account")" class="btn btn-outline-primary">Login to Register</a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="text-center">
+            <p class="text-muted">No events available at the moment.</p>
+        </div>
+    }
+</div>
+
+@if (User.Identity.IsAuthenticated)
+{
+<div class="container mt-5">
+    <div class="text-center">
+        <a href="@Url.Action("Index", "Events")" class="btn btn-outline-primary me-3">View All Events</a>
+        <a href="@Url.Action("Index", "Registrations")" class="btn btn-outline-primary me-3">My Registrations</a>
+        @if (User.IsInRole("Admin"))
+        {
+            <a href="@Url.Action("Index", "Categories")" class="btn btn-outline-primary me-3">Manage Categories</a>
+        }
+    </div>
+</div>
+}
+
+<style>
+    .hero-section {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 80px 0;
+        margin-bottom: 40px;
+    }
+    
+    .card {
+        transition: transform 0.2s;
+    }
+    
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+</style>
