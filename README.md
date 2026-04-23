@@ -108,7 +108,6 @@ dotnet run
 ---
 
 ## 🎨 Features Walkthrough
-
 ### 1. Authentication
 - **Register:** Create new user account
 - **Login:** Access with email/password
@@ -162,56 +161,6 @@ dotnet run
 - Repository Pattern
 - Dependency Injection
 
----
-
-## 📁 Project Structure
-
-```
-EventManagementSystemFinal/
-├── Controllers/
-│   ├── AccountController.cs
-│   ├── EventsController.cs
-│   ├── EventsApiController.cs (Microservice integration)
-│   ├── RegistrationsController.cs
-│   ├── CategoriesController.cs
-│   └── HomeController.cs
-├── Models/
-│   ├── ApplicationUser.cs
-│   ├── Event.cs
-│   ├── Registration.cs
-│   ├── Category.cs
-│   └── DashboardViewModel.cs
-├── Views/
-│   ├── Home/
-│   ├── Account/
-│   ├── Events/
-│   ├── Registrations/
-│   ├── Categories/
-│   └── Shared/
-├── Data/
-│   ├── ApplicationDbContext.cs
-│   └── ApplicationDbInitializer.cs
-├── Services/
-│   ├── IEventService.cs
-│   ├── EventService.cs
-│   ├── IRegistrationService.cs
-│   └── RegistrationService.cs
-├── ApiGateway/
-│   ├── Controllers/
-│   ├── Program.cs
-│   └── appsettings.json
-├── Microservices/
-│   ├── AuthService/
-│   ├── EventService/
-│   └── RegistrationService/
-├── wwwroot/
-├── appsettings.json
-├── Program.cs
-├── README.md
-└── .gitignore
-```
-
----
 
 ## 🌐 API Endpoints
 
@@ -227,5 +176,3 @@ EventManagementSystemFinal/
 - `GET /api/gateway/registrations/{id}` - Get registration by ID
 - `POST /api/gateway/registrations` - Create registration
 - `DELETE /api/gateway/registrations/{id}` - Delete registration
-
-
